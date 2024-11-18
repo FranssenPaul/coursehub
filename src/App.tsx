@@ -4,18 +4,24 @@
 import './App.css';
 
 function App() {
+  const baseUrl = import.meta.env.BASE_URL; // Automatically handles base URL
+
   return (
     <div>
       <h1>Course Resources</h1>
       <ul>
         <li>
-          <a href="/6gtb/2024-11-17-derivee.html" target="_blank">
+          <a
+            href={`${baseUrl}6gtb/2024-11-17-derivee.html`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             View Course (HTML)
           </a>
         </li>
         <li>
           Nothing to download
-          {/* <a href="/documents/mynotes.pdf" target="_blank">
+          {/* <a href={`${baseUrl}documents/mynotes.pdf`} target="_blank" rel="noopener noreferrer">
             Download Notes (PDF)
           </a> */}
         </li>
