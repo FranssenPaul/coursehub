@@ -9,12 +9,15 @@ const SelectDocument: React.FC = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="document-select">Select Document:</label>
+    <div className="form-control w-full max-w-xs">
+      <label htmlFor="document-select" className="label">
+        <span className="label-text">Select Document:</span>
+      </label>
       <select
         id="document-select"
         value={selectedDocument || ''}
         onChange={handleChange}
+        className="select select-bordered"
       >
         <option value="" disabled>
           Choose a document
