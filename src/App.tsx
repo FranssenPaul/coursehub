@@ -21,9 +21,13 @@ function App() {
         </li>
         <li>
           Nothing to download
-          {/* <a href={`${baseUrl}documents/mynotes.pdf`} target="_blank" rel="noopener noreferrer">
+          <a
+            href={`${baseUrl}documents/2024-11-17-derivee.pdf`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Download Notes (PDF)
-          </a> */}
+          </a>
         </li>
       </ul>
     </div>
