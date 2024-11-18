@@ -9,3 +9,9 @@ export interface DocumentState {
   selectedDocument: string | null;
   setSelectedDocument: (doc: string) => void;
 }
+
+// State for Theme
+export interface ThemeState {
+  theme: string;
+  setTheme: (newTheme: string) => void;
+}
