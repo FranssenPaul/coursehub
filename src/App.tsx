@@ -22,7 +22,7 @@ function App() {
         <li>
           Nothing to download
           <a
-            href={`${baseUrl}documents/2024-11-17-derivee.pdf`}
+            href={`${baseUrl}6gtb/2024-11-17-derivee.pdf`}
             target="_blank"
             rel="noopener noreferrer"
           >
