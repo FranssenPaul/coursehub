@@ -4,11 +4,11 @@ import SelectDocument from '../components/SelectDocument';
 
 const DashboardView: React.FC = () => {
   return (
-    <div>
+    <main>
       <h2>Dashboard</h2>
       <SelectClass />
       <SelectDocument />
-    </div>
+    </main>
   );
 };
 
