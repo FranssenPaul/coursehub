@@ -11,11 +11,19 @@ export interface ClassState {
   fetchClasses: () => Promise<void>;
 }
 
+export interface Document {
+  id: string;
+  name: string;
+}
 
 // State for Document
 export interface DocumentState {
   selectedDocument: string | null;
+  documents: Document[]; // Array of documents
   setSelectedDocument: (doc: string) => void;
+  setDocuments: (docs: Document[]) => void;
+  fetchDocuments: (className: string) => Promise<void>;
+  openDocument: (className: string, documentName: string) => void;
 }
 
 // State for Theme

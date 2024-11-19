@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { ClassState } from '../types/store';
+import { useDocumentStore } from './useDocumentStore';
 
 const LOCAL_STORAGE_KEY = 'selectedClass';
 
@@ -14,6 +15,11 @@ export const useClassStore = create<ClassState>(set => ({
       localStorage.removeItem(LOCAL_STORAGE_KEY); // Remove if null
     }
     set({ selectedClass: cls });
+
+    // Fetch documents for the selected class
+    const { setDocuments, fetchDocuments } = useDocumentStore.getState();
+    setDocuments([]); // Reset documents
+    fetchDocuments(cls || '');
   },
 
   fetchClasses: async () => {
