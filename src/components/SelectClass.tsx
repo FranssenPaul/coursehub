@@ -10,7 +10,10 @@ const SelectClass: React.FC = () => {
   }, [fetchClasses]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedClass(e.target.value);
+    const value = e.target.value;
+    if (value) {
+      setSelectedClass(e.target.value);
+    }
   };
 
   return (
