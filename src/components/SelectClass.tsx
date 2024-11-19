@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useClassStore } from '../store/useClassStore';
 
 const SelectClass: React.FC = () => {
-  const { selectedClass, setSelectedClass } = useClassStore();
+  const { classes, selectedClass, setSelectedClass, fetchClasses } =
+    useClassStore();
+
+  useEffect(() => {
+    fetchClasses();
+  }, [fetchClasses]);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedClass(e.target.value);
@@ -22,9 +27,11 @@ const SelectClass: React.FC = () => {
         <option value="" disabled>
           Choose a class
         </option>
-        <option value="Math">Math</option>
-        <option value="Science">Science</option>
-        <option value="History">History</option>
+        {classes.map(option => (
+          <option key={option.id} value={option.name}>
+            {option.name}
+          </option>
+        ))}
       </select>
     </div>
   );

@@ -1,8 +1,16 @@
 // State for Class
+export interface Class {
+  id: number;
+  name: string;
+}
+
 export interface ClassState {
   selectedClass: string | null;
-  setSelectedClass: (cls: string) => void;
+  classes: Class[]; // Array of classes
+  setSelectedClass: (cls: string | null) => void;
+  fetchClasses: () => Promise<void>;
 }
+
 
 // State for Document
 export interface DocumentState {
