@@ -8,7 +8,7 @@ const Header: React.FC = () => {
 
   return (
     <header className="p-4 bg-base-200">
-      <h1 className="text-2xl font-bold text-center">CourseHubX</h1>
+      <h1 className="text-2xl font-bold">CourseHubX</h1>
       <div className="flex items-center gap-4 mt-2">
         <label htmlFor="theme-select" className="label-text">
           Theme:
