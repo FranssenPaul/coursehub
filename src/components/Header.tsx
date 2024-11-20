@@ -4,7 +4,7 @@ import { useThemeStore } from '../store/themeStore';
 const Header: React.FC = () => {
   const { theme, setTheme } = useThemeStore();
 
-  const themes = ['light', 'dark', 'bumblebee', 'coffee', 'forest']; // List of themes
+  const themes = ['bumblebee', 'coffee', 'forest']; // List of themes
 
   return (
     <header className="p-4 bg-base-200">
