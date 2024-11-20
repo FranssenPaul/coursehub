@@ -8,7 +8,8 @@ export interface ClassState {
   selectedClass: string | null;
   classes: Class[]; // Array of classes
   setSelectedClass: (cls: string | null) => void;
-  fetchClasses: () => Promise<void>;
+  fetchClasses: () => void;
+  initialize: () => void;
 }
 
 export interface Document {
@@ -22,7 +23,6 @@ export interface DocumentState {
   documents: Document[]; // Array of documents
   setSelectedDocument: (doc: string) => void;
   setDocuments: (docs: Document[]) => void;
-  fetchDocuments: (className: string) => Promise<void>;
   openDocument: (className: string, documentName: string) => void;
 }
 

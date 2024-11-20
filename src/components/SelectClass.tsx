@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useClassStore } from '../store/useClassStore';
 
 const SelectClass: React.FC = () => {
-  const { classes, selectedClass, setSelectedClass, fetchClasses } =
-    useClassStore();
-
-  useEffect(() => {
-    fetchClasses();
-  }, [fetchClasses]);
+  const { classes, selectedClass, setSelectedClass } = useClassStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value;

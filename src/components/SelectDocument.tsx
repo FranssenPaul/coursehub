@@ -10,7 +10,10 @@ const SelectDocument: React.FC = () => {
   // Handle document selection
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedFile = e.target.value;
-    setSelectedDocument(selectedFile);
+
+    if (selectedFile !== selectedDocument) {
+      setSelectedDocument(selectedFile);
+    }
 
     if (selectedClass && selectedFile) {
       openDocument(selectedClass, selectedFile); // Delegate opening to the store
