@@ -9,7 +9,6 @@
     "lint": "eslint .",
     "preview": "vite preview"
   },
-  "homepage": "https://FranssenPaul.github.io/coursehub",
   "dependencies": {
     "axios": "^1.7.7",
     "daisyui": "^4.12.14",
