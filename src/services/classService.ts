@@ -1,6 +1,6 @@
 // src/services/classService.ts
 
-export const fetchClassesFromApi = async (): Promise<any[]> => {
+export const fetchClasses = async (): Promise<any[]> => {
   try {
     const basePath = import.meta.env.BASE_URL; // Dynamically handles base URL
     const url = `${basePath}classes.json`;
