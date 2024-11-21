@@ -8,8 +8,7 @@ export interface ClassState {
   selectedClass: string | null;
   classes: Class[]; // Array of classes
   setSelectedClass: (cls: string | null) => void;
-  fetchClasses: () => void;
-  initialize: () => void;
+  setClasses: (clsArray: any[]) => void;
 }
 
 export interface Document {
@@ -23,7 +22,6 @@ export interface DocumentState {
   documents: Document[]; // Array of documents
   setSelectedDocument: (doc: string) => void;
   setDocuments: (docs: Document[]) => void;
-  openDocument: (className: string, documentName: string) => void;
 }
 
 // State for Theme
