@@ -9,4 +9,15 @@ export const useDocumentStore = create<DocumentState>(set => ({
   setSelectedDocument: doc => set({ selectedDocument: doc }),
 
   setDocuments: docs => set({ documents: docs }),
+
+  openDocument: (className: string, documentName: string) => {
+    if (!className || !documentName) {
+      console.warn('Class name or document name is missing!');
+      return;
+    }
+
+    const basePath = import.meta.env.BASE_URL;
+    const fileUrl = `${basePath}${className}/${documentName}`;
+    window.open(fileUrl, '_blank'); // Open the document in a new tab
+  },
 }));
