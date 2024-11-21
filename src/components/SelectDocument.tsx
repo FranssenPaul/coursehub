@@ -1,22 +1,16 @@
 import React from 'react';
 import { useDocumentStore } from '../store/useDocumentStore';
-import { useClassStore } from '../store/useClassStore';
 
 const SelectDocument: React.FC = () => {
-  const { documents, selectedDocument, setSelectedDocument, openDocument } =
+  const { documents, selectedDocument, setSelectedDocument } =
     useDocumentStore();
-  const { selectedClass } = useClassStore();
 
   // Handle document selection
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedFile = e.target.value;
 
-    if (selectedFile !== selectedDocument) {
+    if (selectedFile) {
       setSelectedDocument(selectedFile);
-    }
-
-    if (selectedClass && selectedFile) {
-      openDocument(selectedClass, selectedFile); // Delegate opening to the store
     }
   };
 
