@@ -1,6 +1,7 @@
 // fetchDocuments.ts
 import { apiClient } from './apiClient';
 import { AppDocument } from '../types/store';
+import { getBasePath } from '../utils/basePath';
 
 export const fetchDocuments = async (
   className: string | null
@@ -12,8 +13,8 @@ export const fetchDocuments = async (
 
   try {
     // Ensure the base URL is properly formatted
-    const basePath = import.meta.env.BASE_URL?.replace(/\/+$/, '') || ''; // Trim trailing slash if any
-    const url = `${basePath}/${className}/documents.json`; // Construct the full URL
+
+    const url = `${getBasePath()}${className}/documents.json`; // Construct the full URL
 
     // Fetch documents using the API client
     const documents = await apiClient<AppDocument[]>(url);

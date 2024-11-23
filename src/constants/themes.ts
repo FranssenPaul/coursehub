@@ -1,4 +1,10 @@
-export const AVAILABLE_THEMES = ['bumblebee', 'coffee', 'forest'] as const;
+export const AVAILABLE_THEMES = [
+  'bumblebee',
+  'coffee',
+  'forest',
+  'cupcake',
+  'business',
+] as const;
 
 export type Theme = (typeof AVAILABLE_THEMES)[number];
 
