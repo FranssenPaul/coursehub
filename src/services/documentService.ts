@@ -31,6 +31,7 @@ export const fetchDocuments = async (
     return documents;
   } catch (error) {
     console.error(`Error fetching documents for class "${className}":`, error);
-    return [];
+
+    throw new Error('Failed to fetch documents. Please try again later.');
   }
 };

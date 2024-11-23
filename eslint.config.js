@@ -11,33 +11,33 @@ export default tseslint.config(
   { ignores: ['dist'] },
   {
     extends: [
-      js.configs.recommended, // Base recommended rules
-      ...tseslint.configs.recommendedTypeChecked, // Type-aware lint rules for TypeScript
-      prettierConfig, // Disable ESLint rules conflicting with Prettier
+      js.configs.recommended,
+      ...tseslint.configs.recommendedTypeChecked,
+      prettierConfig,
     ],
-    files: ['**/*.{ts,tsx}'], // Lint TypeScript and TSX files
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      ecmaVersion: 2020, // Enable modern ECMAScript features
-      globals: globals.browser, // Add browser globals
+      ecmaVersion: 2020,
+      globals: globals.browser,
       parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'], // TypeScript project references
-        tsconfigRootDir: import.meta.dirname, // Root directory for `tsconfig`
-        ecmaFeatures: { jsx: true }, // Enable JSX
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+        ecmaFeatures: { jsx: true },
       },
     },
     settings: {
-      react: { version: '18.3' }, // Set React version
+      react: { version: '18.2' }, // Ensure React version matches installed version
     },
     plugins: {
-      react, // Add React plugin
-      'react-hooks': reactHooks, // Add React Hooks plugin
-      'react-refresh': reactRefresh, // Add React Refresh plugin
-      prettier, // Add Prettier plugin
+      react,
+      'react-hooks': reactHooks,
+      'react-refresh': reactRefresh,
+      prettier,
     },
     rules: {
-      ...react.configs.recommended.rules, // Enable recommended React rules
-      ...react.configs['jsx-runtime'].rules, // Enable rules for JSX runtime
-      ...reactHooks.configs.recommended.rules, // Enable recommended React Hooks rules
+      ...react.configs.recommended.rules,
+      ...react.configs['jsx-runtime'].rules,
+      ...reactHooks.configs.recommended.rules,
 
       // React Refresh
       'react-refresh/only-export-components': [
@@ -46,7 +46,38 @@ export default tseslint.config(
       ],
 
       // Prettier rules
-      'prettier/prettier': 'warn', // Display Prettier issues as warnings
+      'prettier/prettier': [
+        'warn',
+        {
+          singleQuote: true,
+          semi: true,
+          trailingComma: 'es5',
+          tabWidth: 2,
+          printWidth: 80,
+        },
+      ],
+
+      // TypeScript-specific rules
+      '@typescript-eslint/no-unused-expressions': [
+        'error',
+        { allowShortCircuit: true },
+      ],
+      '@typescript-eslint/no-floating-promises': [
+        'error',
+        {
+          ignoreVoid: true,
+          ignoreIIFE: false,
+        },
+      ],
+      '@typescript-eslint/await-thenable': 'error',
+      '@typescript-eslint/no-misused-promises': [
+        'error',
+        {
+          checksVoidReturn: true,
+          checksConditionals: true,
+        },
+      ],
+      'react/prop-types': 'off', // Disable prop-types rule when using TypeScript
     },
   }
 );

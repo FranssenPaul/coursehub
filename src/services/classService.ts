@@ -2,10 +2,13 @@ import { apiClient } from './apiClient';
 import { Class } from '../types/store';
 import { getBasePath } from '../utils/basePath';
 
-// Fetch Classes
 export const fetchClasses = async (): Promise<Class[]> => {
-  // Ensure the base URL is prefixed if required
-  const url = `${getBasePath()}classes.json`; // Construct the full URL
-  return await apiClient<Class[]>(url);
+  const url = `${getBasePath()}classes.json`;
+
+  try {
+    return await apiClient<Class[]>(url);
+  } catch (error) {
+    console.error('Failed to fetch classes:', error);
+    throw new Error('Could not fetch classes. Please try again later.');
+  }
 };
-// Fetch Documents

@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useClassStore } from '../store/useClassStore';
 
 const SelectClass: React.FC = () => {
   const { classes, selectedClass, setSelectedClass } = useClassStore();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleClassChange = async (value: string): Promise<void> => {
+    setIsLoading(true);
+    try {
+      await setSelectedClass(value);
+    } catch (error) {
+      console.error('Failed to set selected class:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const value = e.target.value;
     if (value) {
-      setSelectedClass(e.target.value);
+      void handleClassChange(value); // Call the async function
     }
   };
 
@@ -21,9 +33,10 @@ const SelectClass: React.FC = () => {
         value={selectedClass || ''}
         onChange={handleChange}
         className="select select-bordered"
+        disabled={isLoading} // Disable dropdown while loading
       >
         <option value="" disabled>
-          Choose a class
+          {isLoading ? 'Loading...' : 'Choose a class'}
         </option>
         {classes.map(option => (
           <option key={option.id} value={option.name}>

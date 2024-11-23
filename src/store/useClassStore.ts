@@ -11,23 +11,18 @@ export const useClassStore = create<ClassState>((set, get) => ({
   classes: [],
 
   setSelectedClass: async cls => {
-    if (cls) {
-      localStorage.setItem(LOCAL_STORAGE_KEY, cls);
-    } else {
-      localStorage.removeItem(LOCAL_STORAGE_KEY);
+    try {
+      // Update class selection
+      updateClassSelection(cls);
+
+      // Update local store state
+      set({ selectedClass: cls });
+
+      // Fetch and emit documents
+      await fetchAndEmitDocuments(cls);
+    } catch (error) {
+      console.error('General error in setSelectedClass:', error);
     }
-
-    set({ selectedClass: cls });
-
-    // Clear existing documents immediately
-    eventBus.emit('documentsUpdated', []);
-
-    // Fetch documents for the selected class
-    const documents = await fetchDocuments(cls);
-
-    // Emit events using Mitt-based EventBus
-    eventBus.emit('classSelected', cls);
-    eventBus.emit('documentsUpdated', documents);
   },
 
   initialize: async () => {
@@ -45,6 +40,35 @@ export const useClassStore = create<ClassState>((set, get) => ({
       }
     } catch (error) {
       console.error('Failed to initialize', error);
+      throw error;
     }
   },
 }));
+
+const fetchAndEmitDocuments = async (cls: string | null): Promise<void> => {
+  try {
+    eventBus.emit('documentsUpdated', []); // Clear existing documents immediately
+    const documents = await fetchDocuments(cls);
+    eventBus.emit('documentsUpdated', documents);
+  } catch (error) {
+    console.error(`Error fetching documents for class "${cls}":`, error);
+    eventBus.emit('error', 'Failed to fetch documents for the selected class.');
+    // eventBus.emit('documentsUpdated', []); // Clear documents explicitly
+    throw error;
+  }
+};
+
+const updateClassSelection = (cls: string | null): void => {
+  try {
+    if (cls) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, cls);
+    } else {
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
+    }
+    eventBus.emit('classSelected', cls);
+  } catch (error) {
+    console.error(`Error while updating selected class "${cls}":`, error);
+    eventBus.emit('error', 'Failed to update the selected class.');
+    throw error;
+  }
+};

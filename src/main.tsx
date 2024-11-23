@@ -4,12 +4,16 @@ import './index.css';
 import App from './App.tsx';
 import { initializeApp } from './services/appInitializationService';
 
-// Call initialize before rendering
-(async () => {
-  await initializeApp();
-  createRoot(document.getElementById('root')!).render(
-    <StrictMode>
-      <App />
-    </StrictMode>
-  );
+void (async () => {
+  try {
+    await initializeApp(); // Await the initialization process
+
+    createRoot(document.getElementById('root')!).render(
+      <StrictMode>
+        <App />
+      </StrictMode>
+    );
+  } catch (error) {
+    console.error('Failed to initialize the application:', error);
+  }
 })();

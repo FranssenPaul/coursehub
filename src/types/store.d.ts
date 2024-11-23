@@ -9,15 +9,15 @@ export interface Class {
 export interface ClassState {
   selectedClass: string | null;
   classes: Class[]; // Array of classes
-  setSelectedClass: (cls: string | null) => void;
-  initialize: () => void;
+  setSelectedClass: (cls: string | null) => Promise<void>;
+  initialize: () => Promise<void>;
 }
 
 export interface AppDocument {
   id: string; // Unique identifier for the document
   title: string; // Title of the document
   content?: string; // Optional content of the document
-  [key: string]: any; // Additional properties (optional)
+  [key: string]: unknown; // Additional properties (optional)
 }
 
 export interface DocumentState {
