@@ -1,23 +1,30 @@
-// src/store/useDocumentStore.ts
 import { create } from 'zustand';
-import { DocumentState } from '../types/store';
+import { AppDocument, DocumentState } from '../types/store';
+import { eventBus } from './eventBus'; // Import the Mitt-based EventBus
 
 export const useDocumentStore = create<DocumentState>(set => ({
-  selectedDocument: null,
-  documents: [],
+  documents: [], // Initialize with an empty list
+  selectedDocument: null, // No document selected initially
 
-  setSelectedDocument: doc => set({ selectedDocument: doc }),
+  setDocuments: docs => {
+    set({ documents: docs, selectedDocument: null }); // Reset selectedDocument to null
+  },
 
-  setDocuments: docs => set({ documents: docs }),
+  setSelectedDocument: docId => {
+    set({ selectedDocument: docId });
+  },
 
-  openDocument: (className: string, documentName: string) => {
-    if (!className || !documentName) {
-      console.warn('Class name or document name is missing!');
-      return;
-    }
+  initialize: () => {
+    // Subscribe to the EventBus for 'documentsUpdated' events
+    const updateDocuments = (updatedDocuments: AppDocument[]) => {
+      set({ documents: updatedDocuments, selectedDocument: null }); // Reset selectedDocument to null
+    };
 
-    const basePath = import.meta.env.BASE_URL;
-    const fileUrl = `${basePath}${className}/${documentName}`;
-    window.open(fileUrl, '_blank'); // Open the document in a new tab
+    eventBus.on('documentsUpdated', updateDocuments);
+
+    // Cleanup listener when the store is unmounted or no longer in use
+    return () => {
+      eventBus.off('documentsUpdated', updateDocuments);
+    };
   },
 }));

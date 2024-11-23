@@ -1,10 +1,9 @@
 import React from 'react';
 import { useThemeStore } from '../store/themeStore';
+import { AVAILABLE_THEMES, Theme } from '../constants/themes';
 
 const Header: React.FC = () => {
   const { theme, setTheme } = useThemeStore();
-
-  const themes = ['bumblebee', 'coffee', 'forest']; // List of themes
 
   return (
     <header className="p-4 bg-base-200">
@@ -16,10 +15,10 @@ const Header: React.FC = () => {
         <select
           id="theme-select"
           value={theme}
-          onChange={e => setTheme(e.target.value)}
+          onChange={e => setTheme(e.target.value as Theme)} // Enforce Theme type
           className="select select-bordered"
         >
-          {themes.map(t => (
+          {AVAILABLE_THEMES.map(t => (
             <option key={t} value={t}>
               {t}
             </option>

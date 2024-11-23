@@ -1,34 +1,35 @@
-// src/services/documentService.ts
+// fetchDocuments.ts
+import { apiClient } from './apiClient';
+import { AppDocument } from '../types/store';
 
 export const fetchDocuments = async (
   className: string | null
-): Promise<any[]> => {
+): Promise<AppDocument[]> => {
   if (!className) {
     console.warn('No class name provided for fetching documents.');
     return [];
   }
 
   try {
-    const basePath = import.meta.env.BASE_URL; // Dynamically handles base URL
-    const url = `${basePath}${className}/documents.json`;
+    // Ensure the base URL is properly formatted
+    const basePath = import.meta.env.BASE_URL?.replace(/\/+$/, '') || ''; // Trim trailing slash if any
+    const url = `${basePath}/${className}/documents.json`; // Construct the full URL
 
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error(`Failed to fetch documents for class: ${className}`);
+    // Fetch documents using the API client
+    const documents = await apiClient<AppDocument[]>(url);
+
+    // Optional: Validate the documents
+    if (
+      !Array.isArray(documents) ||
+      documents.some(doc => !doc.id || !doc.title)
+    ) {
+      console.error('Invalid document structure:', documents);
       return [];
     }
 
-    const data = await response.json();
-    if (!Array.isArray(data)) {
-      console.warn(
-        `Invalid data format received for documents in class: ${className}`
-      );
-      return [];
-    }
-
-    return data;
+    return documents;
   } catch (error) {
-    console.error(`Error fetching documents for class ${className}:`, error);
+    console.error(`Error fetching documents for class "${className}":`, error);
     return [];
   }
 };

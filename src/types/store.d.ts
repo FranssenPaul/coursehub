@@ -1,3 +1,5 @@
+import { Theme } from '../constants/themes';
+
 // State for Class
 export interface Class {
   id: number;
@@ -8,27 +10,26 @@ export interface ClassState {
   selectedClass: string | null;
   classes: Class[]; // Array of classes
   setSelectedClass: (cls: string | null) => void;
-  fetchClasses: () => void;
   initialize: () => void;
 }
 
-export interface Document {
-  id: string;
-  name: string;
+export interface AppDocument {
+  id: string; // Unique identifier for the document
+  title: string; // Title of the document
+  content?: string; // Optional content of the document
+  [key: string]: any; // Additional properties (optional)
 }
 
-// State for Document
 export interface DocumentState {
-  selectedDocument: string | null;
-  documents: Document[]; // Array of documents
-  setSelectedDocument: (doc: string) => void;
-  setDocuments: (docs: Document[]) => void;
-  openDocument: (className: string, documentName: string) => void;
+  documents: AppDocument[]; // List of documents in the state
+  setDocuments: (docs: AppDocument[]) => void; // Function to update the documents
+  selectedDocument: string | null; // ID of the selected document
+  setSelectedDocument: (docId: string | null) => void; // Function to set the selected document
+  initialize: () => void; // Function to initialize subscriptions or other setup
 }
 
 // State for Theme
 export interface ThemeState {
-  theme: string;
-  setTheme: (newTheme: string) => void;
+  theme: Theme;
+  setTheme: (newTheme: Theme) => void;
 }
-
