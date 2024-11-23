@@ -14,6 +14,6 @@ export async function initializeApp(): Promise<void> {
     console.log('App initialization complete');
   } catch (error) {
     console.error('Failed to initialize the app:', error);
-    throw error; // Re-throw the error to handle it higher up if needed
+    // throw error; // Re-throw the error to handle it higher up if needed
   }
 }
