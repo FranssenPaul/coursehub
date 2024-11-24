@@ -32,7 +32,7 @@ const SelectDocument: React.FC = () => {
         id="document-select"
         value={selectedDocument || ''}
         onChange={handleChange}
-        className="select select-bordered text-xs md:text-base"
+        className="select select-bordered"
         disabled={documents.length === 0} // Disable if no documents are available
       >
         <option value="" disabled>

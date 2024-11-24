@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+document-select option {
+  font-size: 0.75rem; /* Adjust the font size as needed */
+}
+
+@media (min-width: 768px) {
+  document-select option {
+    font-size: 0.875rem; /* Adjust the font size for medium screens */
+  }
+}
+
+@media (min-width: 1024px) {
+  document-select option {
+    font-size: 1rem; /* Adjust the font size for large screens */
+  }
+}
