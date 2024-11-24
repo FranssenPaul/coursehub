@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 document-select option {
-  font-size: 0.75rem; /* Adjust the font size as needed */
+  font-size: 0.6rem; /* Adjust the font size as needed */
 }
 
 @media (min-width: 768px) {
