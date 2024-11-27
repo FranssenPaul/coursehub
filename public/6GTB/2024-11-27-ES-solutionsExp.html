@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Réponses aux Situations Exponentielles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add this in the <head> section of your HTML -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["\\(", "\\)"]],
+          displayMath: [["\\[", "\\]"]],
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-gray-100 text-gray-800 p-4">
+    <div class="max-w-4xl mx-auto bg-white p-6 shadow-lg rounded">
+      <h1 class="text-2xl font-bold mb-4 text-center">
+        Réponses aux Situations Exponentielles
+      </h1>
+
+      <!-- Question 1 -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">1. Inconnue : le temps</h2>
+        <p>Nous utilisons le modèle exponentiel suivant :</p>
+        <p class="font-mono bg-gray-100 p-2 rounded">
+          \( N(t) = N_0 \cdot (1 + r)^t \)
+        </p>
+        <p>Avec les données :</p>
+        <ul class="list-disc pl-6">
+          <li>\( N_0 = 500 \)</li>
+          <li>\( r = 0.58 \)</li>
+          <li>\( N(t) = 160\ 000 \)</li>
+        </ul>
+        <p>Étapes de calcul :</p>
+        <ol class="list-decimal pl-6">
+          <li>Diviser par \( N_0 \) : \( (1.58)^t = 320 \).</li>
+          <li>Logarithme : \( \ln((1.58)^t) = \ln(320) \).</li>
+          <li>Résoudre : \( t = \frac{\ln(320)}{\ln(1.58)} \approx 12.6 \).</li>
+        </ol>
+        <p>
+          <strong>Réponse :</strong> Il faudra environ
+          <strong>12,6 heures</strong> pour atteindre 160 000 bactéries.
+        </p>
+      </div>
+
+      <!-- Question 2 -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">
+          2. Modélisation exponentielle
+        </h2>
+        <p>Modèle utilisé :</p>
+        <p class="font-mono bg-gray-100 p-2 rounded">
+          \( C(t) = C_0 \cdot (1 + r)^t \)
+        </p>
+        <p>Avec les données :</p>
+        <ul class="list-disc pl-6">
+          <li>\( C_0 = 42\ 000 \)</li>
+          <li>\( C(5) = 250\ 000 \)</li>
+        </ul>
+        <p>Étapes de calcul :</p>
+        <ol class="list-decimal pl-6">
+          <li>Résolution de \( r \) : \( r \approx 43\% \).</li>
+          <li>Modélisation exponentielle : \( f(x) = a \cdot 10^{bx} \).</li>
+          <li>Valeurs trouvées : \( a = 42\ 000 \), \( b \approx 0.155 \).</li>
+        </ol>
+        <p><strong>Réponse :</strong></p>
+        <ul class="list-disc pl-6">
+          <li>Pourcentage annuel moyen : <strong>43%</strong>.</li>
+          <li>Fonction : \( f(x) = 42\ 000 \cdot 10^{0.155x} \).</li>
+        </ul>
+      </div>
+
+      <!-- Question 3 -->
+      <div class="mb-6">
+        <h2 class="text-xl font-semibold mb-2">3. Utilisation du logarithme</h2>
+        <p>Modèle utilisé :</p>
+        <p class="font-mono bg-gray-100 p-2 rounded">
+          \( f(t) = f_0 \cdot e^{-kt} \)
+        </p>
+        <p>Avec les données :</p>
+        <ul class="list-disc pl-6">
+          <li>\( f_0 = 100 \)</li>
+          <li>\( f(5) = 50 \)</li>
+        </ul>
+        <p>Étapes de calcul pour \( k \) :</p>
+        <ol class="list-decimal pl-6">
+          <li>Résolution : \( e^{-5k} = 0.5 \).</li>
+          <li>\( k = \frac{\ln(0.5)}{-5} \approx 0.139 \).</li>
+        </ol>
+        <p>Étapes pour trouver le temps pour \( f(t) = 10 \) :</p>
+        <ol class="list-decimal pl-6">
+          <li>\( e^{-0.139t} = 0.1 \).</li>
+          <li>\( t = \frac{\ln(0.1)}{-0.139} \approx 16.6 \).</li>
+        </ol>
+        <p><strong>Réponse :</strong></p>
+        <ul class="list-disc pl-6">
+          <li>Constante : \( k \approx 0.139 \).</li>
+          <li>Temps pour 10 g : environ <strong>16,6 ans</strong>.</li>
+        </ul>
+      </div>
+
+      <footer class="text-center text-gray-600 mt-6">
+        Bon courage pour vos révisions !
+      </footer>
+    </div>
+  </body>
+</html>
